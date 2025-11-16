@@ -1,7 +1,3 @@
-// Metadata: PlanetGenerator Project Page
-// Title: Planet Generator
-// Description: A procedural planet generation system
-
 'use client'
 
 import React, { useEffect, useState } from 'react';
@@ -10,18 +6,36 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-export default function PlanetGenerator() {
-  const [content, setContent] = useState('');
+interface ProjectPageProps {
+  params: {
+    projectId: string;
+  };
+}
+
+export default function ProjectPage({ params }: ProjectPageProps) {
+  const [content, setContent] = useState<string>('');
+  const { projectId } = params;
+
+  // Mapping for project IDs to README folder names
+  const getReadmePath = (id: string): string => {
+    const mapping: Record<string, string> = {
+      TerrainLibrary: 'TerrainLib',
+      Portals: 'Portal',
+    };
+
+    const folderName = mapping[id] || id;
+    return `/projects/${folderName}/README.md`;
+  };
 
   useEffect(() => {
-    fetch('/projects/PlanetGenerator/README.md')
+    fetch(getReadmePath(projectId))
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.text();
       })
       .then((text) => setContent(text))
-      .catch((error) => setContent('# Error\nCould not load README.'));
-  }, []);
+      .catch(() => setContent('# Error\nCould not load README.'));
+  }, [projectId]);
 
   return (
     <>
