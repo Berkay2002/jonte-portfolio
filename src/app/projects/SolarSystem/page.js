@@ -1,14 +1,20 @@
+// Metadata: SolarSystem Project Page
+// Title: Solar System
+// Description: An interactive 3D solar system visualization
+
+'use client'
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-export default function TNCG15() {
+export default function SolarSystem() {
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    fetch('/projects/TNCG15/README.md')
+    fetch('/projects/SolarSystem/README.md')
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.text();
@@ -19,7 +25,7 @@ export default function TNCG15() {
 
   return (
     <>
-      <a href="/" className="back-to-home-btn">&#8592; Back to Home</a>
+      <Link href="/" className="back-to-home-btn">&#8592; Back to Home</Link>
       <div className="markdown-content">
         <ReactMarkdown
           children={content}

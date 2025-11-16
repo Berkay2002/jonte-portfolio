@@ -1,3 +1,9 @@
+// Metadata: Fluid Simulation Project Page
+// Title: Fluid Simulation
+// Description: WebGL2-based fluid simulation demo
+
+'use client'
+
 import { useEffect, useRef } from 'react';
 
 export default function WebGLDemo() {
@@ -51,19 +57,19 @@ export default function WebGLDemo() {
 }
 
 
-function runAdvection(gl: WebGL2RenderingContext, 
-    advectionProgram : WebGLProgram, 
+function runAdvection(gl: WebGL2RenderingContext,
+    advectionProgram : WebGLProgram,
     standardUniforms: {
     u_time: WebGLUniformLocation;
     u_resolution: number[];
     u_deltaTime: WebGLUniformLocation;
-    }, 
+    },
     advectionUniforms: {
     u_resolution: WebGLUniformLocation;
     u_time: WebGLUniformLocation;
     u_deltaTime: WebGLUniformLocation;
     V_read: WebGLUniformLocation;
-    }, 
+    },
     textures: {
     width: number;
     height: number;
@@ -79,7 +85,7 @@ function runAdvection(gl: WebGL2RenderingContext,
     pressureFramebuffers: any;
     swapVel: () => void;
     swapPressure: () => void;
-  }, 
+  },
   vao: WebGLVertexArrayObject, ){
 
     gl.useProgram(advectionProgram);
@@ -280,11 +286,11 @@ function init(gl: WebGL2RenderingContext, canvas: HTMLCanvasElement) {
       outColor = vec4(color, 1.0);
   }`;
 
-  
+
 
   const program = createProgram(gl, vertexShaderSource, fragmentShaderSource);
   const advectionProgram = createProgram(gl, vertexShaderSource, advectionShaderSource);
- 
+
   if (!program) throw new Error("Program failed to link");
 
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
@@ -331,6 +337,6 @@ function init(gl: WebGL2RenderingContext, canvas: HTMLCanvasElement) {
   };
   const advectionUniforms = advectionInit(gl, advectionProgram);
 
-  
+
   return { programs:{program, advectionProgram}, uniforms : {standardUniforms, advectionUniforms }, vao };
 }

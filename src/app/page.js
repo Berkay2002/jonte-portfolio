@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
@@ -6,6 +8,14 @@ import ShaderBanner from '../components/ShaderBanner';
 import Background from '../components/Background';
 import Link from 'next/link';
 import projects from '../data/projects';
+
+// Note: Metadata export is not supported in client components.
+// To add SEO metadata (title, description), please add it to the layout.js file.
+// Example:
+// export const metadata = {
+//   title: "Jonatan Ebenholm's Portfolio",
+//   description: "5th year student as Master of Science in Media Technology and Engineering - Portfolio showcasing projects in Computer Graphics, GPU programming, and game development",
+// };
 
 export default function Portfolio() {
   const [isInitialized, setIsInitialized] = React.useState(false);
@@ -224,7 +234,7 @@ export default function Portfolio() {
               personal projects, some of which are showcased in my projects list above. Otherwise I enjoy playing video games, drawing, going to the gym
               or socializing with my friends.
             </p>
-            
+
           </div>
           {/*Skills*/}
           <div style = {{paddingBottom: '10%'}} >

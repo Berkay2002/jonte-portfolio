@@ -1,14 +1,20 @@
+// Metadata: ElementalClash Project Page
+// Title: Elemental Clash
+// Description: A game project featuring elemental combat mechanics
+
+'use client'
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-export default function BlenderSolarSystem() {
+export default function ElementalClash() {
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    fetch('/projects/BlenderSolarSystem/README.md')
+    fetch('/projects/ElementalClash/README.md')
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.text();
@@ -19,7 +25,7 @@ export default function BlenderSolarSystem() {
 
   return (
     <>
-      <a href="/" className="back-to-home-btn">&#8592; Back to Home</a>
+      <Link href="/" className="back-to-home-btn">&#8592; Back to Home</Link>
       <div className="markdown-content">
         <ReactMarkdown
           children={content}
@@ -43,4 +49,3 @@ export default function BlenderSolarSystem() {
     </>
   );
 }
-
