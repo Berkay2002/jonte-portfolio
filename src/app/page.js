@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
@@ -224,7 +226,7 @@ export default function Portfolio() {
               personal projects, some of which are showcased in my projects list above. Otherwise I enjoy playing video games, drawing, going to the gym
               or socializing with my friends.
             </p>
-            
+
           </div>
           {/*Skills*/}
           <div style = {{paddingBottom: '10%'}} >

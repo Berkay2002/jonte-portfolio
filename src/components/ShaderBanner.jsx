@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useEffect } from 'react'; // Only import once at the top

@@ -1,21 +1,32 @@
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-export default function TSBK07() {
+// Mapping for project IDs that have different folder names
+const PROJECT_FOLDER_MAP = {
+  'Portals': 'Portal',
+  'TerrainLibrary': 'TerrainLib',
+};
+
+export default function ProjectPage({ params }) {
   const [content, setContent] = useState('');
+  const { id } = params;
+
+  // Get the actual folder name (handles special cases)
+  const folderName = PROJECT_FOLDER_MAP[id] || id;
 
   useEffect(() => {
-    fetch('/projects/TSBK07/README.md')
+    fetch(`/projects/${folderName}/README.md`)
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.text();
       })
       .then((text) => setContent(text))
       .catch((error) => setContent('# Error\nCould not load README.'));
-  }, []);
+  }, [folderName]);
 
   return (
     <>
@@ -43,4 +54,3 @@ export default function TSBK07() {
     </>
   );
 }
-
